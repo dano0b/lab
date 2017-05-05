@@ -1,6 +1,6 @@
 required_plugins = %w(
   vagrant-libvirt
-  vagrant-hostmanager
+  landrush
 )
 
 needs_restart = false
