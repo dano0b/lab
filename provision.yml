@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+  - name: ensure my ssh key
+    authorized_key:
+      user: vagrant
+      state: present
+      key: "{{ lookup('file', '/home/dano0b/.ssh/id_rsa.pub') }}"
