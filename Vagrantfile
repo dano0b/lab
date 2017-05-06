@@ -4,6 +4,9 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+    amountFrontendNodes = 3
+    amountBackendNodes = 3
+
     config.landrush.enabled = true
     config.landrush.tld = "lab"
 
@@ -13,7 +16,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         vm.memory = '1024m'
     end
 
-	(1..3).each do |id|
+	(1..amountFrontendNodes).each do |id|
         config.vm.define "frontend-#{id}" do |node|
             node.vm.hostname = "frontend-#{id}.lab"
             node.vm.provision "ansible" do |ansible|
@@ -21,7 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             end
         end
     end
-	(1..3).each do |id|
+	(1..amountBackendNodes).each do |id|
         config.vm.define "backend-#{id}" do |node|
             node.vm.hostname = "backend-#{id}.lab"
             node.vm.provision "ansible" do |ansible|
